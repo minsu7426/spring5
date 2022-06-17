@@ -5,10 +5,10 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>sp6</groupId>
-  <artifactId>sp6-chap04</artifactId>
+  <artifactId>sp6-chap05</artifactId>
   <version>0.0.1-SNAPSHOT</version>
 
-  <name>sp6-chap04</name>
+  <name>sp6-chap05</name>
   <!-- FIXME change it to the project's website -->
   <url>http://www.example.com</url>
 
@@ -30,6 +30,12 @@
     	<groupId>org.springframework</groupId>
     	<artifactId>spring-context</artifactId>
     	<version>5.1.2.RELEASE</version>
+    </dependency>
+    
+    <dependency>
+    	<groupId>org.aspectj</groupId>
+    	<artifactId>aspectjweaver</artifactId>
+    	<version>1.8.13</version>
     </dependency>
   </dependencies>
 
