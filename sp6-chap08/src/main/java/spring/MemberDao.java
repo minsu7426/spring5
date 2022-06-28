@@ -50,11 +50,11 @@ public class MemberDao {
 				PreparedStatement pstmt = con.prepareStatement(
 						"insert into MEMBER(EMAIL, PASSWORD, NAME, REGDATE)" + "values (?,?,?,?)",
 						new String[] { "ID" });
-					pstmt.setString(1, member.getEmail());
-					pstmt.setString(2, member.getPassword());
-					pstmt.setString(3, member.getName());
-					pstmt.setTimestamp(4, Timestamp.valueOf(member.getRegisterDateTime()));
-					return pstmt;
+				pstmt.setString(1, member.getEmail());
+				pstmt.setString(2, member.getPassword());
+				pstmt.setString(3, member.getName());
+				pstmt.setTimestamp(4, Timestamp.valueOf(member.getRegisterDateTime()));
+				return pstmt;
 			}
 		}, keyHolder);
 		Number keyValue = keyHolder.getKey();
