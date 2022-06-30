@@ -3,6 +3,7 @@ package controller;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,7 +14,6 @@ import spring.MemberRegisterService;
 import spring.RegisterRequest;
 
 @Controller
-@RequestMapping("/register")
 public class RegisterController {
 
 	private MemberRegisterService memberRegisterService;
@@ -22,35 +22,38 @@ public class RegisterController {
 		this.memberRegisterService = memberRegisterService;
 	}
 	
-	@RequestMapping("/step1")
+	@RequestMapping("/register/step1")
 	public String handleStep1() {
 		return "/register/step1";
 	}
 	
-	@PostMapping("/step2")
+	@PostMapping("/register/step2")
 	public String handleStep2(
-			@RequestParam(value = "agree", defaultValue = "false") Boolean agree) {
+			//form: taglib를 사용하면 RequestParam에 Model 매개변수를 추가해준다.
+			@RequestParam(value = "agree", defaultValue = "false") Boolean agree, Model model) {
 		if(!agree) {
 			return "/register/step1";
 		}
+		//form: taglib를 사용하면 model을 addAttribute 해준다.
+		model.addAttribute("registerRequest", new RegisterRequest());
 		return "/register/step2";
 	}
 	
-//	@PostMapping("/step2")
+//	@PostMapping("/register/step2")
 //	public String handleStep2(HttpServletRequest request) {
 //		String agreeParam = request.getParameter("agree");
 //		if(agreeParam == null || !agreeParam.equals("true")) {
 //			return "/step1";
 //		}
-//		return "/step2";
+//		return "/register/step2";
 //	}
 	
-	@GetMapping("/step2")
+	@GetMapping("/register/step2")
 	public String handleStep2Get() {
 		return "redirect:/register/step1";
 	}
 	
-	@PostMapping("/step3")
+	@PostMapping("/register/step3")
 	public String handleStep3(RegisterRequest regReq) {
 		try {
 			memberRegisterService.regist(regReq);
