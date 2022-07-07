@@ -47,5 +47,4 @@ public class MvcConfig implements WebMvcConfigurer{
 	public Validator getValidator() {
 		return new RegisterRequestValidator();
 	}
-	
 }
